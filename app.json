@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "FinLens",
+    "slug": "finlens-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["android"],
+    "sdkVersion": "50.0.0",
+    "android": {
+      "package": "com.pvigelli.finlens"
+    }
+  }
+}
