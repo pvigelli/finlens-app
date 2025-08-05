@@ -1,6 +1,6 @@
 {
   "name": "FinLens",
-  "slug": "finlens-app",
+  "slug": "finlens",
   "version": "1.0.0",
   "orientation": "portrait",
   "platforms": ["android"],
@@ -11,6 +11,9 @@
   "extra": {
     "eas": {
       "projectId": "8f84aee6-8fd7-4054-9a8b-127dc9762d71"
-    }
+    },
+  "cli": {
+    "appVersionSource": "version"
+  }
   }
 }
