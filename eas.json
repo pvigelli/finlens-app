@@ -1,13 +1,14 @@
 {
   "cli": {
-    "version": ">= 3.13.0"
+    "version": ">= 7.0.0",
+    "appVersionSource": "project"
   },
   "build": {
     "preview": {
       "developmentClient": false,
       "distribution": "internal"
     },
-    "release": {
+    "production": {
       "developmentClient": false,
       "distribution": "store"
     }
