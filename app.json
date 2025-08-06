@@ -1,19 +1,32 @@
 {
-  "name": "FinLens",
-  "slug": "finlens",
-  "version": "1.0.0",
-  "orientation": "portrait",
-  "platforms": ["android"],
-  "sdkVersion": "50.0.0",
-  "android": {
-    "package": "com.pvigelli.finlens"
-  },
-  "extra": {
-    "eas": {
-      "projectId": "8f84aee6-8fd7-4054-9a8b-127dc9762d71"
+  "expo": {
+    "name": "FinLens",
+    "slug": "finlens",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
-  "cli": {
-    "appVersionSource": "version"
-  }
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.pvigelli.finlens",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e8a6cd2a-9f26-4450-bdd7-c90f3969c4f5"
+      }
+    },
+    "owner": "pvigelli"
   }
 }
