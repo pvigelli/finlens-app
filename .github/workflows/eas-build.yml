@@ -1,28 +1,32 @@
-name: Build Android APK
+name: EAS Build
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
   build:
-    name: EAS Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Authenticate with Expo
-        run: eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
+      - name: Login to EAS
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+        run: eas login --non-interactive --token $EAS_TOKEN
 
-      - name: Run EAS Build (Preview - APK)
-        run: eas build --platform android --profile preview --non-interactive
+      - name: Build Android APK
+        run: eas build --platform android --profile production --non-interactive
+
+      - name: Build iOS IPA
+        run: eas build --platform ios --profile production --non-interactive
