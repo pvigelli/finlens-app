@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Dashboard from './src/components/Dashboard';
+import Stats from './src/components/Stats';
+import Settings from './src/components/Settings';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Benvenuto su FinLens!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => {
+              let name = route.name === 'Home' ? 'home' : route.name === 'Stats' ? 'stats-chart' : 'settings';
+              return <Ionicons name={name} size={size} color={color} />;
+            },
+          })}
+        >
+          <Tab.Screen name="Home" component={Dashboard} />
+          <Tab.Screen name="Stats" component={Stats} />
+          <Tab.Screen name="Settings" component={Settings} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -27,6 +27,9 @@
         "projectId": "8f84aee6-8fd7-4054-9a8b-127dc9762d71"
       }
     },
-    "owner": "pvigelli"
+    "owner": "pvigelli",
+    "cli": {
+      "appVersionSource": "version"
+    }
   }
 }
