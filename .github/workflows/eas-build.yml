@@ -2,6 +2,9 @@ name: EAS Build
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -9,24 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Login to Expo (action)
+        uses: expo/expo-github-action@v8
+        with:
+          token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Login to EAS
+      - name: Run EAS Build (preview apk)
         env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-        run: eas login --non-interactive --token $EAS_TOKEN
-
-      - name: Build Android APK
-        run: eas build --platform android --profile production --non-interactive
-
-      - name: Build iOS IPA
-        run: eas build --platform ios --profile production --non-interactive
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile preview --non-interactive
