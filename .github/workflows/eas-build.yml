@@ -1,4 +1,4 @@
-name: Build Expo App
+name: Expo EAS Build - Android
 
 on:
   workflow_dispatch:
@@ -16,12 +16,17 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Authenticate with Expo (Login)
+        run: echo "Authenticating with Expo..."
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Build app
+      - name: Run EAS Build (Preview APK)
         env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-        run: eas build --platform android --non-interactive
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile preview --non-interactive
