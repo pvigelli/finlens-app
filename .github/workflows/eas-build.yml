@@ -16,13 +16,17 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install   # <-- cambiato da npm ci a npm install
+        run: npm install
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Run EAS Build (Preview APK)
+      - name: Verify Expo Login
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive
+        run: eas whoami || (echo "Expo login failed" && exit 1)
 
+      - name: Run EAS Build (Android APK/AAB)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile production --non-interactive
