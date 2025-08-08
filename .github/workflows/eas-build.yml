@@ -1,16 +1,14 @@
-name: EAS Build
+name: Build Expo App
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -18,22 +16,12 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm ci
-
-        - name: Build app with EAS
-        run: eas build --platform android --non-interactive
-        env:
-          EAS_TOKEN: ${{ secrets.EXPO_TOKEN }}
-
-      - name: Login to Expo (action)
-        uses: expo/expo-github-action@v8
-        with:
-          token: ${{ secrets.EXPO_TOKEN }}
+        run: npm install
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Run EAS Build (preview apk)
+      - name: Build app
         env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile preview --non-interactive
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
+        run: eas build --platform android --non-interactive
