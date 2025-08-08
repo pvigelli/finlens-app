@@ -29,7 +29,7 @@
     },
     "owner": "pvigelli",
     "cli": {
-      "appVersionSource": "version"
+      "appVersionSource": "local"
     }
   }
 }
