@@ -2,6 +2,11 @@ name: Expo EAS Build - Android
 
 on:
   workflow_dispatch:
+    inputs:
+      build_profile:
+        description: 'Seleziona il profilo di build (preview o production)'
+        required: true
+        default: 'preview'
 
 jobs:
   build:
@@ -29,4 +34,4 @@ jobs:
       - name: Run EAS Build (Android APK/AAB)
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive
+        run: eas build --platform android --profile ${{ github.event.inputs.build_profile }} --non-interactive
