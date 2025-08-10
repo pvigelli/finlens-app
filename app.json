@@ -19,8 +19,8 @@
       "package": "com.pvigelli.finlens",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon-512.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {
