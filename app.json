@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -19,8 +19,8 @@
       "package": "com.pvigelli.finlens",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/adaptive-icon.jpg",
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
@@ -31,9 +31,6 @@
         "projectId": "8f84aee6-8fd7-4054-9a8b-127dc9762d71"
       }
     },
-    "owner": "pvigelli",
-    "cli": {
-      "appVersionSource": "local"
-    }
+    "owner": "pvigelli"
   }
 }
