@@ -4,9 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       build_profile:
-        description: 'Seleziona il profilo di build (preview o production)'
+        description: 'Seleziona il profilo di build: preview (APK) o production (AAB)'
         required: true
         default: 'preview'
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -26,12 +29,14 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Verify Expo Login
+      - name: Verify Expo login
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas whoami || (echo "Expo login failed" && exit 1)
+        run: |
+          echo "Checking Expo login..."
+          eas whoami || (echo "Expo login failed. Check EXPO_TOKEN secret." && exit 1)
 
-      - name: Run EAS Build (Android APK/AAB)
+      - name: Run EAS Build
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas build --platform android --profile ${{ github.event.inputs.build_profile }} --non-interactive
